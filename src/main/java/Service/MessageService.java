@@ -28,7 +28,7 @@ public class MessageService {
      *      and posted_by refers to a real, existing user. If successful, the new message should be persisted to the database.
      *
      * @param message an object representing a new Message.
-     * @return the newly added message if the add operation was successful, including the message_id.
+     * @return the newly added message if the add operation was successful, including the message_id. Return null if message invalid.
      */
     public Message addMessage(Message message){
         if ((message.getMessage_text().isBlank()) || (message.getMessage_text().length() > 255) || !(accountDAO.checkAccountExistsById(message.getPosted_by()))){
@@ -113,7 +113,7 @@ public class MessageService {
      * @param account_id of the account to get posted messages from.
      * @return all messages posted by a specific account.
      */
-    public List<Message> getAllMessagesFromCityToCity(int account_id) {
+    public List<Message> getAllMessagesByAccountId(int account_id) {
         return messageDAO.getAllMessagesByAccountId(account_id);
     }
 }
